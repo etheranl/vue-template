@@ -60,5 +60,5 @@ $ npm run dev
 
 You can fork this repo to create your own boilerplate, and run it on [koa-grace](https://github.com/xiongwilee/koa-grace)
 
-## Specile Thanks
+## Special Thanks
 A handsome single boy--[Thunf](https://github.com/Thunf)

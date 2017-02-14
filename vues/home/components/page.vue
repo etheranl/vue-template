@@ -1,6 +1,6 @@
 <template>
     <div id="demo">
-        <img class="logo" src="/grace_boilerplate/static/image/logo-grace.png" width="20%">
+        <img class="logo" src="/grace_boilerplate/static/image/logo-grace.png" width="100%">
         <p>
             Welcome to start your app with Koa-grace!
         </p>
@@ -13,7 +13,10 @@
             <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
             <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
         </p>
-      
+        <p>
+            If you have any issues with the setup, please file an issue at this boilerplate's
+            <a href="https://github.com/haoranw/grace-vue2-webpack-boilerplate" target="_blank">repository</a>.
+        </p>
     </div>
 </template>
 
@@ -28,11 +31,8 @@ export default {
 </script>
 
 <style lang="less">
+@import '~static/css/common.less';
 #demo{
-  img{
-    display:block;
-    margin:0 auto;
-  }
     /* some less */
 }
 </style>

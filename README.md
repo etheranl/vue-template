@@ -21,9 +21,9 @@ $ cd ~/fe/app/
 $ git clone git@github.com:haoranw/grace-vue2-webpack-boilerplate.git grace_boilerplate
 $
 $ cd grace_boilerplate
-$ npm install
+$ yarn[https://github.com/yarnpkg/yarn] install(recommended,or use npm install)
 $
-$ npm run dev
+$ yarn run dev
 ```
 
 
@@ -59,3 +59,6 @@ $ npm run dev
 ## Fork It And Make Your Own
 
 You can fork this repo to create your own boilerplate, and run it on [koa-grace](https://github.com/xiongwilee/koa-grace)
+
+## Specile Thanks
+A handsome single boy--Thunf[https://github.com/Thunf]

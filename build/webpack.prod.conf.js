@@ -16,8 +16,8 @@ module.exports = merge(baseWebpackConfig, utils.includeModules({
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].js?v=[chunkhash:11]'),
-    chunkFilename: utils.assetsPath('js/[id].js?v=[chunkhash:11]')
+    filename: utils.assetsPath('js/[name].js?v=[chunkhash:10]'),
+    chunkFilename: utils.assetsPath('js/[id].js?v=[chunkhash:10]')
   },
   vue: {
     loaders: utils.cssLoaders({
@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, utils.includeModules({
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     // extract css into its own file
-    new ExtractTextPlugin(utils.assetsPath('css/[name].css?v=[contenthash:11]')),
+    new ExtractTextPlugin(utils.assetsPath('css/[name].css?v=[contenthash:10]')),
     // 把所有入口公共文件打包到vendor.js里
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

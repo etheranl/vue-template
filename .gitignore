@@ -1,5 +1,7 @@
-node_modules/
-npm-debug.log*
+.DS_store
 
-.DS_Store
-yarn.lock
+npm-debug.log
+
+/node_modules
+
+/static/**/rev-manifest.json

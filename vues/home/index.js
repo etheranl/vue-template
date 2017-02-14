@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import index from './components/index.vue';
 import { routes } from './router.js'
 /**
  * 添加需要import的组件

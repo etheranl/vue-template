@@ -2,7 +2,7 @@
 
 const path = require('path')
 
-const mod = 'gy';
+const mod = 'grace_boilerplate';
 const app = path.resolve(__dirname, `../../../server/app/${mod}`);
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     app: app,
 
     // 模块列表
-    modules: path.resolve(__dirname, '../src/*'),
+    modules: path.resolve(__dirname, '../vues/*'),
     modulesEscape:['assets','components','common'],
     // 源HTML路径
     viewsEntry: {

@@ -1,12 +1,11 @@
 # grace-vue2-webpack-boilerplate
 
-
 > a boilerplate for vue-webpack-project run on [koa-grace](https://github.com/xiongwilee/koa-grace)
 
 
 ## Documentation
 
-It's designed for [koa-grace](https://github.com/xiongwilee/koa-grace). 
+It's designed for [koa-grace](https://github.com/xiongwilee/koa-grace).
 
 Koa-grace is a new generation Nodejs SFB(Separation of Front and Back ends) framework.
 
@@ -19,11 +18,11 @@ Make sure to read it!
 
 ``` bash
 $ cd ~/fe/app/
-$ git clone git@github.com:Thunf/grace-vue-webpack-boilerplate.git grace_boilerplate
+$ git clone git@github.com:haoranw/grace-vue2-webpack-boilerplate.git grace_boilerplate
 $
 $ cd grace_boilerplate
 $ npm install
-$ 
+$
 $ npm run dev
 ```
 
@@ -55,3 +54,8 @@ $ npm run dev
   - JavaScript minified with [UglifyJS](https://github.com/mishoo/UglifyJS2).
   - HTML copy with [copy-webpack-plugin](https://github.com/kevlened/copy-webpack-plugin).
   - All static assets compiled with version hashes for efficient long-term caching, and a production `index.html` is auto-generated with template to these generated assets.
+
+
+## Fork It And Make Your Own
+
+You can fork this repo to create your own boilerplate, and run it on [koa-grace](https://github.com/xiongwilee/koa-grace)

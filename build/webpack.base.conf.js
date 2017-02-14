@@ -15,9 +15,7 @@ module.exports = {
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
       'static': path.resolve(__dirname, '../static'),
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../vues/components')
     }
   },
   resolveLoader: {
@@ -42,16 +40,18 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel',
       include: projectRoot,
-      exclude: /node_modules/
+      exclude: /node_modules/,
+      query: {
+        "presets": ['es2015', "stage-2"],
+        "plugins": ["transform-runtime"],
+        "comments": false
+      }
     }, {
       test: /\.json$/,
       loader: 'json'
     }, {
       test: /\.html$/,
       loader: 'vue-html'
-    }, {
-      test: /vued.src.*?js$/,
-      loader: 'babel'
     }]
   },
   vue: {

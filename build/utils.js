@@ -103,7 +103,7 @@ exports.includeModules = function(conf, env) {
   let modules = exports.getModules();
   modules.forEach(function(item) {
 
-    conf.entry[item] = `./src/${item}/index.js`;
+    conf.entry[item] = `./vues/${item}/index.js`;
 
     conf.plugins.push(new HtmlWebpackPlugin(Object.assign({
       filename: `${config.build.viewsOutput}/${item}.html`,

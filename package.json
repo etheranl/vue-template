@@ -1,12 +1,25 @@
 {
-  "name": "gy",
-  "version": "0.0.1",
-  "description": "qufenqi",
-  "main": "",
-  "author": "S",
-  "license": "ISC",
+  "name": "grace-vue-webpack-boilerplate",
+  "version": "1.0.0",
+  "description": "a boilerplate for vue-webpack-project run on koa-grace",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node build/dev.js",
+    "build": "node build/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thunf/grace-vue-webpack-boilerplate.git"
+  },
+  "author": "THUNF",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Thunf/grace-vue-webpack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Thunf/grace-vue-webpack-boilerplate#readme",
   "dependencies": {
-
+    "vue": "^2.1.10"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -26,7 +39,6 @@
     "less-loader": "^2.2.3",
     "shelljs": "^0.6.0",
     "url-loader": "^0.5.7",
-    "vue": "^2.1.10",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^10.3.0",
     "vue-resource": "^1.2.0",
@@ -35,11 +47,5 @@
     "vue-template-compiler": "^2.1.10",
     "webpack": "^1.12.2",
     "webpack-merge": "^0.8.3"
-  },
-  "scripts": {
-    "dev": "node build/dev.js",
-    "build": "node build/build.js",
-    "auto": "node build/auto_make/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

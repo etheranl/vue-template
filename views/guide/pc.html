@@ -1,0 +1,68 @@
+{% extends 'common/layout.html' %}
+
+{% set navBarObj = [
+    {value: 'index', title: '首页', href: '/v2/guide'},
+    {value: 'about', title: '关于我们', href: '/v2/guide/about'},
+    {value: 'business', title: '商务合作', href: '/v2/guide/business'}
+] %}
+
+{% block 'block_custom_css' %}
+<link rel="stylesheet" href="{{constant.cdn}}/gy/static/css/guide/pc.css">
+{% endblock %}
+
+{% block 'block_custom_js' %}
+<script src="{{constant.cdn}}/gy/static/js/lib/jquery.min.js"></script>
+{% endblock %}
+
+{% block 'content' %}
+<div class="guide-pc">
+    <div class="pc-head bwrapper" id="pc-head">
+        <div class="block">
+            <div class="head-logo imgw"><div class="logo-img img"></div></div>
+            <div class="head-nav">
+
+                {% for nav in navBarObj %}
+                    {% if loop.first %}<ul class="navbar">{% endif %}
+                        {% if (navBarValue === nav.value || !navBarValue && nav.href === 'index') %}
+                            <li class="nav-item active ">
+                                <a class="nav-link" href="javascript:void(0)">{{ nav.title }}</a>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ nav.href }}">{{ nav.title }}</a>
+                        {% endif %}
+                        </li>
+                    {% if loop.last %}</ul>{% endif %}
+                {% endfor %}
+
+                <span class="share-wechart">
+                    <span class="icon-wechart">
+                        <span class="modal-qrcode" id="qrcode-wechart"></span>
+                    </span>
+                </span>
+                <span class="share-weibo">
+                    <span class="icon-weibo">
+                        <span class="modal-qrcode" id="qrcode-weibo"></span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {# 除了页面头尾之外的内容 #}
+    {% block 'content-body' %}
+    {% endblock %}
+
+    <div class="pc-footer bwrapper">
+        <div class="footer-content">客服电话： 400-099-0707</div>
+        <div class="footer-content">Copyright © 2017 趣店集团版权所有</div>
+        <div class="footer-content">京ICP证150758号 &emsp; 京公网安备 11010802020196号</div>
+        <div class="footer-links imgw">
+            <div class="links-img img">
+                <a class="flink" target="_blank" title="诚信网站" href="https://credit.szfw.org/CX20160426018726220188.html"></a>
+                <a class="flink" target="_blank" title="中国互联网举报中心" href="http://www.12377.cn/"></a>
+                <a class="flink" target="_blank" title="网络举报APP下载" href="http://www.12377.cn/node_548446.htm"></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

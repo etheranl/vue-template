@@ -1,0 +1,61 @@
+{% extends 'pc.html' %}
+
+{% set navBarValue = "about" %}
+
+{% block 'block_custom_css' %}
+    {% parent %}
+    <link rel="stylesheet" href="{{constant.cdn}}/gy/static/css/guide/pc_about.css">
+{% endblock %}
+
+{% block 'content-body' %}
+
+<div class="about-title bwrapper">
+    <div class="block title-content">
+        <div class="title-slogan"></div>
+    </div>
+</div>
+<div class="about-text bwrapper">
+    <div class="block text-content"></div>
+</div>
+<div class="about-history bwrapper">
+    <div class="block history-content">
+    </div>
+</div>
+{# <div class="about-service bwrapper">
+    <div class="block service-content"></div>
+</div> #}
+<div class="about-investor bwrapper">
+    <div class="block investor-content">
+        <a class="flink flink1" target="_blank" href="http://brv.com/"></a>
+        <a class="flink flink2" target="_blank" href="http://www.sourcecodecap.com/"></a>
+        <a class="flink flink3" target="_blank" href="http://www.kalends.cn/"></a>
+        <a class="flink flink4" target="_blank" href="https://www.antgroup.com"></a>
+        <a class="flink flink5" target="_blank" href="http://www.phoenixfortune.com/"></a>
+        <a class="flink flink6" target="_blank" href="http://www.lianluo.com"></a>
+
+    </div>
+</div>
+<div class="about-staff bwrapper">
+    <div class="block staff-content">
+        <a class="staff-btn" href="mailto:hr@qudian.com">加入趣伙伴</a>
+        <div class="staff-photo"></div>
+    </div>
+</div>
+
+<!-- <div class="about-partner bwrapper">
+    <div class="block partner-title">
+        <a class="partner-btn" href="mailto:bd@qudian.com">与趣店共赢</a>
+        <div class="partner-content"></div>
+    </div>
+</div>
+<div class="about-mail bwrapper">
+    <div class="block mail-logo">
+        <div class="mail-content">
+            <span class="mail-text">商务合作：<a href="mailto:bd@qudian.com">bd@qudian.com</a></span>
+            <span class="mail-text">媒体合作：<a href="mailto:pr@qudian.com">pr@qudian.com</a></span>
+            <span class="mail-text">市场合作：<a href="mailto:marketing@qudian.com">marketing@qudian.com</a></span>
+        </div>
+    </div>
+</div> -->
+
+{% endblock %}

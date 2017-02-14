@@ -1,0 +1,126 @@
+{% extends 'pc.html' %}
+
+{% set navBarValue = "index" %}
+
+{% block 'block_custom_css' %}
+{% parent %}
+{# <link rel="stylesheet" href="{{constant.cdn}}/gy/static/css/guide/pc.css"> #}
+{% endblock %}
+
+{% block 'block_custom_js' %}
+{% parent %}
+<script src="{{constant.cdn}}/gy/static/js/guide/ScrollTrigger.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    var pcHeadDom = $('#pc-head');
+    var callback = function(height, scrollPos){
+        if (!pcHeadDom || !pcHeadDom.length) return;
+        if (scrollPos > 10) {
+            if (pcHeadDom.hasClass('head-fix')) return;
+            pcHeadDom.addClass('head-fix');
+        }
+        if (scrollPos <= 10 && pcHeadDom.hasClass('head-fix')) {
+            pcHeadDom.removeClass('head-fix');
+        }
+    };
+    if (window.navigator.userAgent.toLowerCase().match(/chrome/)) {
+        // 增强交互体验，只在chrome
+        ScrollTrigger.init();
+        ScrollTrigger.attach(callback); 
+    }
+}); 
+</script>
+<script src="{{constant.cdn}}/gy/static/js/guide/qrcode.js"></script>
+<script>
+    $(document).ready(function(){
+        showQRCode('#qrcode-download', window.location.origin + '/v2/guide/download', 0);
+    });
+    function showQRCode(id, url, margin){
+        var showContent = $(id);
+        if (!showContent || !showContent.length) {return; }
+        var qr = qrcode(8, "H");
+        qr.addData(url); qr.make();
+        var code = qr.createImgTag(8, typeof margin == 'number' ? margin : 15);
+        showContent.append(code);
+    }
+</script>
+<script src="{{constant.cdn}}/gy/static/js/guide/sensorsClick.js"></script>
+{% endblock %}
+
+{% block 'content-body' %}
+
+<div class="pc-banner bwrapper">
+    <div class="block">
+        <div class="banner-img imgw">
+            <div class="img-sofa img"></div>
+        </div>
+        <div class="banner-content">
+            <div class="title-main imgw">
+                <div class="img-title img"></div>
+            </div>
+            <div class="title-sub imgw">
+                <div class="img-subtitle img"></div>
+            </div>
+            <div class="qrcode-btn clearfix">
+                <div class="btns">
+                    <a id="download-ios" href="/v2/guide/download?p=ios" target="_blank" class="btn btn-white-border" data-suffix="_pc">
+                        <span class="icon-apple"></span><span>iPhone版下载</span>
+                    </a>
+                    <a id="download-android" href="/v2/guide/download?p=android" target="_blank" class="btn btn-white-border" data-suffix="_pc">
+                        <span class="icon-android"></span><span>Android版下载</span>
+                    </a>
+                </div>
+                <div class="qrcode imgw">
+                    <div class="img-qrcode img" id="qrcode-download"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pc-content bwrapper">
+    <div class="block">
+        <div class="content-left">
+            <div class="content-text">
+                <div class="h1">0首付分期</div>
+                <div class="h3">手机、电脑、平板、数码0元即可拿走</div>
+            </div>
+        </div>
+        <div class="content-right v-bottom">
+            <div class="content-phone imgw">
+                <div class="phone-img img pimg1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pc-content bwrapper">
+    <div class="block">
+        <div class="content-left v-bottom" data-scroll="toggle(.fromLeftIn, .fromLeftOut) addHeight once">
+            <div class="content-phone imgw">
+                <div class="phone-img img pimg2"></div>
+            </div>
+        </div>
+        <div class="content-right text-right" data-scroll="toggle(.fromRightIn, .fromRightOut) addHeight once">
+            <div class="content-text">
+                <div class="h1">1秒钟提现</div>
+                <div class="h3">现金取现1秒支付宝实时到账</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pc-content bwrapper">
+    <div class="block">
+        <div class="content-left" data-scroll="toggle(.fromLeftIn, .fromLeftOut) addHeight once">
+            <div class="content-text">
+                <div class="h1">轻松借 自由还</div>
+                <div class="h3">万元额度随时借，按时还款积累信用</div>
+            </div>
+        </div>
+        <div class="content-right v-bottom" data-scroll="toggle(.fromRightIn, .fromRightOut) addHeight once">
+            <div class="content-phone imgw">
+                <div class="phone-img img pimg3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

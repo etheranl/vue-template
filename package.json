@@ -1,7 +1,7 @@
 {
-  "name": "grace-vue-webpack-boilerplate",
+  "name": "grace-vue2-webpack-boilerplate",
   "version": "1.0.0",
-  "description": "a boilerplate for vue-webpack-project run on koa-grace",
+  "description": "a boilerplate for vue2-webpack-project run on koa-grace",
   "main": "index.js",
   "scripts": {
     "dev": "node build/dev.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Thunf/grace-vue-webpack-boilerplate.git"
+    "url": "git+https://github.com/haoranw/grace-vue2-webpack-boilerplate.git"
   },
   "author": "THUNF",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Thunf/grace-vue-webpack-boilerplate/issues"
+    "url": "https://github.com/haoranw/grace-vue2-webpack-boilerplate/issues"
   },
-  "homepage": "https://github.com/Thunf/grace-vue-webpack-boilerplate#readme",
+  "homepage": "https://github.com/haoranw/grace-vue2-webpack-boilerplate#readme",
   "dependencies": {
     "vue": "^2.1.10"
   },

@@ -1,4 +1,4 @@
-# vue-template run on koa-grace
+# vue-webpack-boilerplate
 
 - 在使用之前请确保已阅读 [koa-grace](https://github.com/xiongwilee/koa-grace)的相关文档；
 - 基于[vuejs-templates](https://github.com/vuejs-templates/webpack)和[grace-vue-webpack-boilerplate](https://github.com/Thunf/grace-vue-webpack-boilerplate)，根据项目实际需求做了部分定制。

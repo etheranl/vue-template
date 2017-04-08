@@ -1,19 +1,28 @@
 // https://github.com/shelljs/shelljs
-require('shelljs/global')
-env.NODE_ENV = 'production'
+require('./check-versions')()
 
+process.env.NODE_ENV = 'production'
+
+var ora = require('ora')
 var path = require('path')
-var config = require('./config')
+var chalk = require('chalk')
+var shell = require('shelljs')
 var webpack = require('webpack')
+var config = require('./config')
 var webpackConfig = require('./webpack.prod.conf')
 
-var assetsPath = path.join(config.build.assetsRoot)
-// build的时候不允许删除当前目录
-// rm('-rf', assetsPath)
-// mkdir('-p', assetsPath)
-cp('-R', 'static/', assetsPath)
+var spinner = ora('building for production...')
+spinner.start()
+
+var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
+shell.rm('-rf', assetsPath)
+shell.mkdir('-p', assetsPath)
+shell.config.silent = true
+shell.cp('-R', 'static/*', assetsPath)
+shell.config.silent = false
 
 webpack(webpackConfig, function (err, stats) {
+  spinner.stop()
   if (err) throw err
   process.stdout.write(stats.toString({
     colors: true,
@@ -21,5 +30,11 @@ webpack(webpackConfig, function (err, stats) {
     children: false,
     chunks: false,
     chunkModules: false
-  }) + '\n')
+  }) + '\n\n')
+
+  console.log(chalk.cyan('  Build complete.\n'))
+  console.log(chalk.yellow(
+    '  Tip: built files are meant to be served over an HTTP server.\n' +
+    '  Opening index.html over file:// won\'t work.\n'
+  ))
 })

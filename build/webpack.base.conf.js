@@ -1,68 +1,140 @@
 var path = require('path')
-var config = require('./config')
 var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+var config = require('./config')
+var vueLoaderConfig = require('./vue-loader.conf')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = {
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+function exec(cmd) {
+  return require('child_process').execSync(cmd).toString().trim()
+}
+
+function entries(opt) {
+  var fileList = exec('cd ./vues && ls').split('\n');
+  return Object.assign.apply(null, [].concat(fileList.map(function(item) {
+    var obj = {};
+    if (!/^_[\w-]+$/.test(item)) {
+      exec(`cd ./vues/${item} && ls`).split('\n').map(function(dir) {
+        obj[dir] = `./vues/${item}/` + dir + '/'
+      })
+    }
+    return obj
+  }), opt))
+}
+
+const webpackConfig = {
+  entry: entries({
+    // folderName: './vues/folderName'
+    common: [
+      './static/css/reset.scss',
+    ]
+  }),
   output: {
     path: config.build.assetsRoot,
-    publicPath: config.build.assetsPublicPath,
-    filename: '[name].js'
+    filename: utils.assetsPath('js/[name]/build.js?[hash:7]'),
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    extensions: [
+      '.js', '.vue', '.json'
+    ],
+    modules: [
+      resolve('vues'), resolve('static'), resolve('node_modules')
+    ],
     alias: {
-      'static': path.resolve(__dirname, '../static'),
-      'components': path.resolve(__dirname, '../vues/components')
+      'vue$': 'vue/dist/vue.esm.js', // 'vue/dist/vue.common.js' for webpack 1
+      'vues': resolve('vues'),
+      'static': resolve('static'),
+      'image': resolve('static/image'),
+      'components': resolve('vues/_components')
     }
   },
-  resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
-  },
   module: {
-    /*preLoaders: [{
-      test: /\.vue$/,
-      loader: 'eslint',
-      include: projectRoot,
-      exclude: /node_modules/
-    }, {
-      test: /\.js$/,
-      loader: 'eslint',
-      include: projectRoot,
-      exclude: /node_modules/
-    }],*/
-    loaders: [{
-      test: /\.vue$/,
-      loader: 'vue'
-    }, {
-      test: /\.js$/,
-      loader: 'babel',
-      include: projectRoot,
-      exclude: /node_modules/,
-      query: {
-        "presets": ['es2015', "stage-2"],
-        "plugins": ["transform-runtime"],
-        "comments": false
+    loaders: [
+      {
+        test: /\.css$/,
+        loader: "style-loader!css-loader!postcss-loader",
+        options: {
+          plugins: function() {
+            return [require('autoprefixer')];
+          }
+        }
       }
-    }, {
-      test: /\.json$/,
-      loader: 'json'
-    }, {
-      test: /\.html$/,
-      loader: 'vue-html'
-    }]
-  },
-  vue: {
-    loaders: utils.cssLoaders()
+    ],
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+      }, {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [
+          resolve('vues'), resolve('test')
+        ],
+        exclude: [resolve('node_modules')]
+      }, {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1024 * 8,
+          name: utils.assetsPath('image/[name].[ext]?[hash:10]')
+        }
+      }, {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1024 * 8,
+          name: utils.assetsPath('fonts/[name].[ext]?[hash:10]')
+        }
+      }
+    ]
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: './controller', to: `${config.build.app}/controller` },
-      { from: './model', to: `${config.build.app}/model` },
-      { from: './deploy', to: `${config.build.app}/deploy` },
-      { from: './mock', to: `${config.build.app}/mock` }
-    ])
+      {
+        from: {
+          glob: './controller/**/*'
+        },
+        to: `${config.base.outputRoot}`
+      }, {
+        from: {
+          glob: './deploy/**/*'
+        },
+        to: `${config.base.outputRoot}`
+      }, {
+        from: {
+          glob: './mock/**/*'
+        },
+        to: `${config.base.outputRoot}`
+      }, {
+        from: {
+          glob: './views/**/!(_*)'
+        },
+        to: `${config.base.outputRoot}`
+      }, {
+        from: {
+          glob: './static/**/!(_*)'
+        },
+        to: `${config.base.outputRoot}`
+      }
+    ]),
+    new ExtractTextPlugin({filename: utils.assetsPath('css/[name]/build.css?[contenthash:10]')})
   ]
 }
+const vuxLoader = require('vux-loader')
+
+module.exports = vuxLoader.merge(webpackConfig, {
+  options: {},
+  plugins: [
+    {
+      name: 'vux-ui'
+    }
+  ]
+})

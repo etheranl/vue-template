@@ -1,20 +1,8 @@
-# grace-vue2-webpack-boilerplate
+# vue-template run on koa-grace
 
-> a boilerplate for vue-webpack-project run on [koa-grace](https://github.com/xiongwilee/koa-grace)
-
-
-## Documentation
-
-It's designed for [koa-grace](https://github.com/xiongwilee/koa-grace).
-
-Koa-grace is a new generation Nodejs SFB(Separation of Front and Back ends) framework.
-
-Make sure to read it!
-
-
-## Usage
-
-### Simple demo
+- 在使用之前请确保已阅读 [koa-grace](https://github.com/xiongwilee/koa-grace)的相关文档；
+- 基于[vuejs-templates](https://github.com/vuejs-templates/webpack)和[grace-vue-webpack-boilerplate](https://github.com/Thunf/grace-vue-webpack-boilerplate)，根据项目实际需求做了部分定制。
+## 使用方法
 
 ``` bash
 $ cd ~/fe/app/
@@ -23,42 +11,40 @@ $
 $ cd grace_boilerplate
 $ yarn install(recommended,or use npm install)
 $
-$ yarn run dev
-```
-
-
-### Custom
-
-- clone this boilerplate to a new folder
-```bash
-$ cd ~/fe/app/
-$ git clone git@github.com:haoranw/grace-vue2-webpack-boilerplate.git <newFolderName>
-```
-- replace all `grace_boilerplate` with `<newFolderName>` in this folder
-- install dependency & run dev
-```bash
-$ cd <newFolderName>
-$ yarn install(recommended,or use npm install)
 $ npm run dev
+
+```
+新建页面：
+```
+$ npm run auto
+
+依次输入项目名称和页面名称
 ```
 
+## Why I made this
+- 随着项目内容的扩展，单个仓储内的vues文件越来越多。
+在以往的多入口构建方案中，并不支持页面的二级目录。在单个仓储内包含了多个项目的vues文件，并不能很好的区分它们属于哪一个项目模块。
+- 在本构建方案中，相关路径如下：
+```
+└── vues               
+    ├── _components     
+    ├── project1            // project1
+    └── project2            // project2
+        ├── page1           // page1入口
+        ├── page2
+        └── page3
+            ├── components
+            ├── index.js
+            ├── index.vue
+            └── router.js
+```
+- 为了配合此路径，在通过`npm run auto`来新建页面时需要输入项目名称。例如新建`project1/page1`，需要在运行命令之后依次输入`project1`、`page1`。
 
-## What's Included
 
-- `npm run dev`
-  - Webpack + `vue-loader` for single file Vue components.
-  - State preserving compilation error overlay
-  - Source maps
-
-- `npm run build`: Production ready build.
-  - JavaScript minified with [UglifyJS](https://github.com/mishoo/UglifyJS2).
-  - HTML copy with [copy-webpack-plugin](https://github.com/kevlened/copy-webpack-plugin).
-  - All static assets compiled with version hashes for efficient long-term caching, and a production `index.html` is auto-generated with template to these generated assets.
-
-
-## Fork It And Make Your Own
-
-You can fork this repo to create your own boilerplate, and run it on [koa-grace](https://github.com/xiongwilee/koa-grace)
-
-## Special Thanks
-A handsome single boy--[Thunf](https://github.com/Thunf)
+## Todo
+- [x] 新建页面时判断是否存在同名文件
+- [x] 新建页面时生成对应路径的controller
+- [x] 修改prefix配置，提高兼容性
+- [ ] 检测项目名称，必须输入已存在的项目名。独立新建项目的指令
+- [ ] 不同项目内的同名页面共存
+- [ ] 集成优化后的flexible && pxtorem的配置

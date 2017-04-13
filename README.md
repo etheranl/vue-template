@@ -6,7 +6,7 @@
 
 ``` bash
 $ cd ~/fe/app/
-$ git clone git@github.com:haoranw/grace-vue2-webpack-boilerplate.git grace_boilerplate
+$ git clone git@github.com:haoranw/vue-template.git grace_boilerplate
 $
 $ cd grace_boilerplate
 $ yarn install(recommended,or use npm install)

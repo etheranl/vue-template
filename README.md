@@ -43,37 +43,33 @@ $ npm run auto
 - 为了配合此路径，在通过`npm run auto`来新建页面时需要输入项目名称。例如新建`project1/page1`，需要在运行命令之后依次输入`project1`、`page1`。
 
 ## Config
-模板内集成了手淘的flexible适配方案和px2rem的webpack插件
-
+- 模板内集成了手淘的flexible适配方案和px2rem的webpack插件
 在使用中，需要将`/build/rem.conf.js`中的`remUnit`设置为"设计稿的宽度/10"，列如设计稿为750px，该值应为75。
 
-页面中元素的宽高等值，直接按照设计稿中的像素值编写即可。
-
+- 页面中元素的宽高等数值，按照设计稿中的像素值编写即可。
 例如设计稿中宽150px，高64px的元素：
 ```
 .selector {
     width: 150px;
-    height: 64px; /*px*/
+    height: 75px;
     font-size: 28px; /*px*/
     border: 1px solid #ddd; /*no*/
 }
 ```
-进过编译后会变成：
+经过编译后会变成：
 ```
 .selector {
     width: 2rem;
+    height: 1rem;
     border: 1px solid #ddd;
 }
 [data-dpr="1"] .selector {
-    height: 32px;
     font-size: 14px;
 }
 [data-dpr="2"] .selector {
-    height: 64px;
     font-size: 28px;
 }
 [data-dpr="3"] .selector {
-    height: 96px;
     font-size: 42px;
 }
 ```

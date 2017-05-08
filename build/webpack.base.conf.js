@@ -4,7 +4,7 @@ var config = require('./config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+var px2remConfig = require('./rem.conf')
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -62,7 +62,10 @@ const webpackConfig = {
         loader: "style-loader!css-loader!postcss-loader",
         options: {
           plugins: function() {
-            return [require('autoprefixer')];
+            return [
+              require('autoprefixer'),
+              require('postcss-px2rem')(px2remConfig)
+            ];
           }
         }
       }
